@@ -32,6 +32,3 @@ class Solution:
             if right2 - left2 > end - start:
                 start, end = left2, right2
         return s[start: end+1]
-
-s = Solution()
-print(s.longestPalindrome('acdbbdaa'))
