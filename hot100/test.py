@@ -1,15 +1,19 @@
-from tkinter import N
+def quick_sort(alist, start, end):
+    if start > end:
+        return
+    pivot = alist[end]
+    low = start
+    high = end
+    while low < high:
+        while low < high and alist[low] <= alist[high]:
+            low += 1
+        alist[high] = alist[low]
 
+        while low < high and alist[low] > alist[high]:
+            high -= 1
+        alist[low] = alist[high]
+    alist[low] = pivot
+    quick_sort(alist, low+1, high)
+    quick_sort(alist, low, high-1)
 
-class Solution:
-    def groupAnagrams(self, strs: list) -> list:
-        mp = {list: None}
-        for st in strs:
-            counts = [0] * 26
-            for ch in st:
-                counts[ord(ch) - ord('a')] += 1
-            mp[tuple(counts)].append(st)
-    
-        return list(mp.values)
-
-print(Solution().groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+quick_sort([3,4,2,3], 0, 3)
